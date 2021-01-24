@@ -11,7 +11,7 @@ export function useFormValidation() {
         const value = target.value;
         setValues({ ...values, [name]: value });
         setErrors({ ...errors, [name]: target.validationMessage });
-        setIsValid(target.closest('.popup__field').checkValidity());
+        setIsValid(target.closest('.popup__form').checkValidity());
     }
 
     /* установка значений полей по умолчанию / очистка полей */

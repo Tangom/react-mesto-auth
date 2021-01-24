@@ -32,7 +32,7 @@ function Card(props) {
         <div className="element__content-like">
           <button className={cardLikeButtonClassName} onClick={handleLikeClick} type="button"></button>
           <p className="element__result">{props.card.likes.length}</p>
-        </div>
+          </div>
       </div>
     </div>
   );

@@ -28,9 +28,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [error, setError] = React.useState(false);
-  const [registered, setRegistered] = React.useState(false);
-  const [message, setMessage] = React.useState("");
-  const [email, setEmail] = React.useState("");
+   const [email, setEmail] = React.useState("");
   const history = useHistory();
 
   function handleCardLike(card) {
@@ -59,6 +57,7 @@ function App() {
   }
 
   React.useEffect(() => {
+    setIsLoading(true);
     api.getAllData()
       .then((data) => {
         const [profile, cards] = data;
@@ -118,12 +117,10 @@ function App() {
       .register(email, password)
       .then((res) => {
         if (res) {
-          setMessage("Вы успешно зарегистрировались!");
-          setRegistered(true);
+          setError(false);
           history.push("/sign-in");
         } else {
-          setMessage("Что-то пошло не так! Попробуйте ещё раз.");
-          setRegistered(false);
+          setError(true);
         }
       })
       .catch((err) => console.log(err));
@@ -171,8 +168,8 @@ function App() {
 
   function handleSignOut() {
     setLoggedIn(false);
-    localStorage.removeItem('jwt');
-    history.push('/sign-in');
+    localStorage.removeItem("jwt");
+    history.push("/sign-in");
   }
 
   function handleCheckToken() {
@@ -197,8 +194,9 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-
+      {loggedIn && (
       <Header email={email} onClick={handleSignOut} menuText="Выйти"/>
+      )}
       <Switch>
         <ProtectedRoute
           exact
@@ -263,3 +261,4 @@ function App() {
 }
 
 export default App;
+

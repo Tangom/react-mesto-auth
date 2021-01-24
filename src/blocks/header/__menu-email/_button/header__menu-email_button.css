@@ -5,6 +5,7 @@
   cursor: pointer;
   height: 29px;
   display: inline-flex;
+  margin: 45px 0 40.6px;
 }
 
 .header__menu-email_button:hover {
