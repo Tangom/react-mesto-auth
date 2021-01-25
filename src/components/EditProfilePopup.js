@@ -27,19 +27,15 @@ function EditProfilePopup(props) {
       onClose={props.onClose}
       onSubmit={handleSubmit}
       isDisabled={!isValid}
-
-      children={
-        <>
-          <input className="popup__field popup__field_name" id='name-input' maxLength="40" minLength="2" name="name"
-                 placeholder="Имя" required type="text" value={values.name || ''} onChange={handleChange}/>
-          <span className='popup__form-error' id='name-input-error'>{errors.name}</span>
-          <input className="popup__field popup__field_career" id='career-input' maxLength="200" minLength="2"
-                 name="about"
-                 placeholder="О себе" required type="text" value={values.about || ''} onChange={handleChange}/>
-          <span className='popup__form-error' id='career-input-error'>{errors.about}</span>
-        </>
-      }
-    />
+    >
+      <input className="popup__field popup__field_name" id='name-input' maxLength="40" minLength="2" name="name"
+             placeholder="Имя" required type="text" value={values.name || ''} onChange={handleChange}/>
+      <span className='popup__form-error' id='name-input-error'>{errors.name}</span>
+      <input className="popup__field popup__field_career" id='career-input' maxLength="200" minLength="2"
+             name="about"
+             placeholder="О себе" required type="text" value={values.about || ''} onChange={handleChange}/>
+      <span className='popup__form-error' id='career-input-error'>{errors.about}</span>
+    </PopupWithForm>
   )
 }
 

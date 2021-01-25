@@ -7,8 +7,8 @@ import ImagePopup from './ImagePopup';
 import AddPlacePopup from './AddPlacePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import EditProfilePopup from './EditProfilePopup';
-import api from '../utils/Api';
-import auth from '../utils/Auth';
+import api from '../utils/api';
+import auth from '../utils/auth';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 import {Route, Switch, useHistory} from "react-router-dom";
 import Register from './Register';
@@ -59,8 +59,7 @@ function App() {
   React.useEffect(() => {
     setIsLoading(true);
     api.getAllData()
-      .then((data) => {
-        const [profile, cards] = data;
+      .then(([profile, cards]) => {
         setCards(cards);
         setCurrentUser(profile)
       })
@@ -189,8 +188,16 @@ function App() {
   }
 
   React.useEffect(() => {
-    handleCheckToken();
-  }, []);
+    const token = localStorage.getItem('jwt');
+
+    if (token) {
+      handleCheckToken();
+    }
+  }, [handleCheckToken])
+
+  // React.useEffect(() => {
+  //   handleCheckToken();
+  // }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
